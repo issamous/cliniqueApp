@@ -15,7 +15,7 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Ajouter des clinique  <small></small></h5>
+                <h5>Liste des clinique  <small></small></h5>
                 <div class="ibox-tools">
                     <a class="collapse-link">
                         <i class="fa fa-chevron-up"></i>
@@ -24,7 +24,7 @@
             </div>
     
             <div class="ibox-content">
-            <form method="post" class="form-horizontal " action="{{ url('cliniques') }}">
+            <form method="post" class="form-horizontal " action="{{ url('administrateurs') }}">
                       {{ csrf_field() }}
                     <div class="form-group"><label class="col-sm-2 control-label">Nom: </label>
                         <div class="col-sm-10"><input type="text" class="form-control" name="nom" value="{{ old('nom') }}">
@@ -36,34 +36,34 @@
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <div class="form-group"><label class="col-sm-2 control-label">Email: </label>
+                    <div class="form-group"><label class="col-sm-2 control-label">Prenom: </label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}"> 
-                            @if ($errors->has('email'))
+                            <input type="prenom" class="form-control" name="prenom" value="{{ old('prenom') }}"> 
+                            @if ($errors->has('prenom'))
                             <span class="help-block">
-                                <strong class="text-danger">{{ $errors->first('email') }}</strong>
+                                <strong class="text-danger">{{ $errors->first('prenom') }}</strong>
                             </span>
                            @endif
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <div class="form-group"><label class="col-sm-2 control-label">Address: </label>
+                    <div class="form-group"><label class="col-sm-2 control-label">Role: </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="address" value="{{ old('address') }}"> 
-                            @if ($errors->has('address'))
+                            <input type="text" class="form-control" name="role" value="{{ old('role') }}"> 
+                            @if ($errors->has('role'))
                             <span class="help-block">
-                                <strong class="text-danger">{{ $errors->first('address') }}</strong>
+                                <strong class="text-danger">{{ $errors->first('role') }}</strong>
                             </span>
                            @endif
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
-                    <div class="form-group"><label class="col-sm-2 control-label">Tel: </label>
+                    <div class="form-group"><label class="col-sm-2 control-label">Photo: </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="tel"  value="{{ old('tel') }}">
-                            @if ($errors->has('tel'))
+                            <input type="text" class="form-control" name="photo"  value="{{ old('photo') }}">
+                            @if ($errors->has('photo'))
                             <span class="help-block">
-                                <strong class="text-danger">{{ $errors->first('tel') }}</strong>
+                                <strong class="text-danger">{{ $errors->first('photo') }}</strong>
                             </span>
                            @endif
                         </div>
@@ -105,7 +105,7 @@
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <button class="btn btn-primary" type="submit">enregistrer</button>
+                            <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
                     </div>
                 </form>

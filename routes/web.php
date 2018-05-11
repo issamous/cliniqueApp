@@ -40,13 +40,21 @@ Route::get('laboratoires/{id}/edit','LaboratoireController@edit');
 Route::put('laboratoires/{id}','LaboratoireController@update');
 Route::delete('laboratoires/{id}','LaboratoireController@destroy');
 
-
+Route::put('cliniques/{id}/password','CliniqueController@userupdate');
 Route::get('cliniques','CliniqueController@index');
 Route::get('cliniques/create','CliniqueController@create');
 Route::post('cliniques','CliniqueController@store');
 Route::get('cliniques/{id}/edit','CliniqueController@edit');
 Route::put('cliniques/{id}','CliniqueController@update');
 Route::delete('cliniques/{id}','CliniqueController@destroy');
+
+Route::put('administrateurs/{id}/password','AdministrateurController@userupdate');
+Route::get('administrateurs','AdministrateurController@index');
+Route::get('administrateurs/create','AdministrateurController@create');
+Route::post('administrateurs','AdministrateurController@store');
+Route::get('administrateurs/{id}/edit','AdministrateurController@edit');
+Route::put('administrateurs/{id}','AdministrateurController@update');
+Route::delete('administrateurs/{id}','AdministrateurController@destroy');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

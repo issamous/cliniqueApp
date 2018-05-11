@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Clinique ;
+use App\Http\Requests\cliniqueRequest ;
+use App\Http\Requests\cliniqueFormRequest ;
+use App\Http\Requests\cliniquePassRequest ;
+use App\User ;
 
 class CliniqueController extends Controller
 {
@@ -13,7 +19,10 @@ class CliniqueController extends Controller
      */
     public function index()
     {
-        return view('clinique.index') ;
+        $listClinique = Clinique::all();
+
+        
+        return view('clinique.index' ,['cliniqulist'=> $listClinique ]) ;
     }
 
     /**
@@ -32,9 +41,28 @@ class CliniqueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(cliniqueRequest $request)
     {
         //
+    //return $request->all();
+    
+        $Users = new  User();
+        $Users->name = $request->input('login') ;
+        $Users->email = $request->input('email') ;
+        $Users->password = bcrypt($request->input('password')) ;
+        $Users->role = 1 ;
+        $Users->save();
+ 
+        $Clinique = new Clinique();
+        $Clinique->nom = $request->input('nom') ;
+        $Clinique->email = $request->input('email') ;
+        $Clinique->tel = $request->input('tel') ; 
+        $Clinique->adresse = $request->input('address') ;
+        $Clinique->users_id = $Users->id ;
+        $Clinique->save();
+
+       session()->flash('success','le clinique a ete bien enrgistre !!') ;
+      return redirect('cliniques/create') ;
     }
 
     /**
@@ -57,6 +85,9 @@ class CliniqueController extends Controller
     public function edit($id)
     {
         //
+       
+        $Clinique = Clinique::find($id);
+        return view('clinique.edit',['clinique'=> $Clinique ] ) ;
     }
 
     /**
@@ -66,10 +97,61 @@ class CliniqueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(cliniqueFormRequest $request ,$id)
     {
-        //
+        
+        $clinique = Clinique::find($id);
+        $clinique->nom = $request->input('nom') ;
+        $clinique->adresse = $request->input('address') ;
+        $clinique->tel = $request->input('tel') ;
+        $clinique->save();
+       return redirect('cliniques/'.$id.'/edit') ;
     }
+
+    public function userupdate(Request $request ,$id)
+    {
+        $clinique = Clinique::find($id);
+        $Users =  User::find($clinique->users_id);
+
+        $mdpuser = $request->input('password_actuel');
+        $verifypass = password_verify($mdpuser, $Users->password);
+        $this->validate($request, [
+  
+            'password_actuel' => "required",
+            'password_nouveau' => "required|max:255|min:6|same:password_confirmer",
+        ]);
+
+        if ($verifypass == true)
+        {
+           
+
+            $Users->password = bcrypt($request->input('password_nouveau')) ;
+            $Users->save();
+            session()->flash('successPassword','le Password a étè bien changer !!') ;
+            return redirect('cliniques/'.$id.'/edit') ;
+           
+        }else{
+            $messages = array(
+                'boolean' => 'Verifer votre mot de passe actuel',
+            );
+            $this->validate($request, [
+                'password_actuel' => "boolean:false",
+            ],$messages);
+        }
+
+
+        //dd($request->all());
+         
+    }
+
+    public function updatePass(Request $request ,$id)
+    {
+        $clinique = Clinique::find($id);
+        $Users =  User::find($clinique->users_id);
+
+
+    }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -77,8 +159,16 @@ class CliniqueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request , $id)
     {
-        //
+
+       $clinique = Clinique::find($id);
+       $Users =  User::find($clinique->users_id);
+
+       $Users->delete();
+       $clinique->delete();
+       session()->flash('successSupp','le clinique a étè bien supprimeé !!') ;
+       return redirect('cliniques') ;
+       
     }
 }

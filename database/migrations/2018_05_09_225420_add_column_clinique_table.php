@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNewColoumCliniquesTable extends Migration
+class AddColumnCliniqueTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,7 @@ class AddNewColoumCliniquesTable extends Migration
     {
         Schema::table('cliniques', function (Blueprint $table) {
             //
-           
-            $table->string('nom');
-            $table->string('email');
-            $table->string('tel');
-            $table->string('adresse');
-            $table->string('login');
-            $table->string('password');
+            $table->datetime('deleted_at')->nullable();
         });
     }
 
@@ -33,7 +27,7 @@ class AddNewColoumCliniquesTable extends Migration
     public function down()
     {
         Schema::table('cliniques', function (Blueprint $table) {
-            //
+            $table->dropColumn('deleted_at');
         });
     }
 }

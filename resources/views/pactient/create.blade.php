@@ -1,27 +1,6 @@
 @extends('layouts.masterBack')
 
 @section('content')
-<!--
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-        <form action="{{ url('') }}">
-            <div class="form-group">
-            <label for="">Nom</label><input name="nom" type="text" class="form-control">
-            <label for="">Prenom</label><input  name="prenom" type="text" class="form-control">
-            <label for="">Age</label><input  name="age" type="text" class="form-control">
-            <label for="">Cin</label><input  name="cin" type="text" class="form-control">
-            <div class="form-group">
-            <input  name="submit" value="save" type="submit" class="form-control">
-            </div>
-            </div>
-        </form>
-         
-        
-        </div>
-    </div>
-</div>-->
-
 
 <div class="row">
     <div class="col-lg-12">
@@ -70,7 +49,7 @@
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-4 col-sm-offset-2">
-                            <button class="btn btn-primary" type="submit">enregistrer</button>
+                            <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
                     </div>
                 </form>
@@ -90,4 +69,4 @@
 
 @section('cssSup')
 
-@endsection
+@endsection 

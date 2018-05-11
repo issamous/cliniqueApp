@@ -8,9 +8,9 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Liste des Cliniques</h5>
+                        <h5>Liste des Administrateurs</h5>
                         <div class="ibox-tools">
-                           <a href="{{ url('cliniques/create') }}" class="btn btn-primary" role="button" > Ajouter</a>
+                           <a href="{{ url('administrateurs/create') }}" class="btn btn-primary" role="button" > Ajouter</a>
 
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -24,23 +24,22 @@
                     <thead>
                     <tr>
                         <th>Nom</th>
-                        <th>Email</th>
-                        <th>Tel</th>
-                        <th>Address</th>
+                        <th>Prenom</th>
+                        <th>photo</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
-                    </thead>
-
+                    </thead>          
                     <tbody>
                         
-                    @foreach($cliniqulist as $item)    
+                    @foreach($Administrateurlist as $item)    
                         <tr class="gradeX">
                             <td>{{ $item->nom }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->tel }}</td>
-                            <td class="center">{{ $item->adresse }}</td>
+                            <td>{{ $item->prenom }}</td>
+                            <td>{{ $item->photo }}</td>
+                            <td class="center">{{ $item->role }}</td>
                             <td class="center" style="padding-left:10px;"> 
-                                <a  href="{{ url('cliniques/'.$item->id.'/edit') }}" class="btn btn-warning btn-xs">Modifier</a> 
+                                <a  href="{{ url('administrateurs/'.$item->id.'/edit') }}" class="btn btn-warning btn-xs">Modifier</a> 
                                 <a  data-toggle="modal" data-target="#myModal" data-id="{{ $item->id }}" class="btn btn-danger btn-xs delete">Supprimer</a>
                             </td>
 
@@ -52,9 +51,9 @@
                     <tfoot>
                     <tr>
                         <th>Nom</th>
-                        <th>Email</th>
-                        <th>Tel</th>
-                        <th>Address</th>
+                        <th>Prenom</th>
+                        <th>photo</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
@@ -143,7 +142,7 @@
                 $target=$(e.target);
                 const id=$target.attr('data-id');
                 console.log(id)
-                $(".modal-footer form").attr("action", "cliniques/"+id);
+                $(".modal-footer form").attr("action", "administrateurs/"+id);
             });
      
             
@@ -155,7 +154,7 @@
                         showMethod: 'slideDown',
                         timeOut: 6000
                     };
-                    toastr.success( 'Le clinique a étè bien supprimeé !!','Suppersion'  );
+                    toastr.success( 'Le administrateurs a étè bien supprimeé !!','Suppersion'  );
 
                 }, 1000);
 

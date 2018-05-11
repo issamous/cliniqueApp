@@ -26,7 +26,15 @@
                 <a href="{{ url('dashbord') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
 
-            <li class="{{ request()->route()->uri=='cliniques' || request()->route()->uri=='cliniques/create' ?'active':''}}">
+            <li class="{{ request()->route()->uri=='administrateurs' || request()->route()->uri=='administrateurs/create'  || request()->route()->uri=='administrateurs/{id}/edit' ?'active':''}}">
+                <a href="#"><i class="fa fa-hospital-o"></i> <span class="nav-label">Administrateurs</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li ><a href="{{ url('administrateurs') }}"  style="{{ request()->route()->uri=='administrateurs'?'color: #ffffff !important;':''}}">Liste des Admin</a></li>
+                    <li><a style="{{ request()->route()->uri=='administrateurs/create'?'color: #ffffff !important;':''}}" href="{{ url('administrateurs/create') }}">Ajouter un Admin</a></li>
+                </ul>
+            </li>
+
+            <li class="{{ request()->route()->uri=='cliniques' || request()->route()->uri=='cliniques/create'  || request()->route()->uri=='cliniques/{id}/edit' ?'active':''}}">
                 <a href="#"><i class="fa fa-hospital-o"></i> <span class="nav-label">Clinique</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li ><a href="{{ url('cliniques') }}"  style="{{ request()->route()->uri=='cliniques'?'color: #ffffff !important;':''}}">Liste des Cliniques</a></li>
@@ -36,9 +44,9 @@
         
             
             <li class="{{ request()->route()->uri=='laboratoires'|| request()->route()->uri=='laboratoires/create' ?'active':''}}">
-                <a href=""><i class="fa fa-1x fa-flask"></i> <span class="nav-label">Labos</span> <span class="fa arrow"></span></a>
+                <a href=""><i class="fa fa-1x fa-flask"></i> <span class="nav-label">Laboratoires</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ url('laboratoires') }}"  style="{{ request()->route()->uri=='laboratoires'?'color: #ffffff !important;':''}}">Liste des Laboratoire</a></li>
+                    <li><a href="{{ url('laboratoires') }}"  style="{{ request()->route()->uri=='laboratoires'?'color: #ffffff !important;':''}}">Liste des Laboratoires</a></li>
                     <li><a style="{{ request()->route()->uri=='laboratoires/create'?'color: #ffffff !important;':''}}"  href="{{ url('laboratoires/create') }}">Ajouter un Laboratoire</a></li>
                 </ul>
             </li>
